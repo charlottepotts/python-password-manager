@@ -55,12 +55,9 @@ class PasswordManager():
     def __init__(self):
         self.mypasswords = {} # Creates an empty dictionary ready to store the user's passwords
     def add(self, service, password):
-        self.service = service # Don't need to do this because it's coming in as an argument each time. Would do this if they were defined in __init__ and then not used as an argument in a different function but you want to use the argument.
-        self.password = password
-        if is_valid(self.password): # Pass the password through our password validator to check validity
-            self.mypasswords[self.service] = self.password # If valid, add service-password key-value pair to the dictionary
+        if is_valid(password): # Pass the password through our password validator to check validity
+            self.mypasswords[service] = password # If valid, add service-password key-value pair to the dictionary
     def get_for_service(self, service):
-        self.service = service 
-        return self.mypasswords.get(self.service) # Returns password linked to service using get(), otherwise returns None
+        return self.mypasswords.get(service) # Returns password linked to service using get(), otherwise returns None
     def list_services(self):
         return self.mypasswords.keys() # Lists all services in password manager using keys()
